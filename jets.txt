@@ -1,0 +1,2 @@
+Type,Model,speed,range,price
+PassengerJet,Cessna 172,20,100,12_000

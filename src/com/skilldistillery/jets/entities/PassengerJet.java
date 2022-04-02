@@ -6,7 +6,7 @@ public class PassengerJet extends Jet {
 	private double speed;
 	private int range;
 	private long price;
-	private String flyMessage;
+	private String flyMessage = "";
 	
 	public PassengerJet() {
 		super();

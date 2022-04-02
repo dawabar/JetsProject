@@ -6,6 +6,7 @@ public abstract class Jet {
 	private double speed;
 	private int range;
 	private long price;
+	private String flyMessage;
 	
 	public Jet() {	}
 
@@ -49,6 +50,14 @@ public abstract class Jet {
 		this.price = price;
 	}
 	
-	
+	public String getFlyMessage() {
+		return flyMessage;
+	}
+
+	public void setFlyMessage(String flyMessage) {
+		this.flyMessage = flyMessage;
+	}
+
+	public void fly() {};
 	
 }

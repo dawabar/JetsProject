@@ -1,2 +1,15 @@
-Type,Model,speed,range,price
-PassengerJet,Cessna 172,20,100,12_000
+PassengerJet	Cessna 172	20	100	12000	test message
+CargoJet	A330-900	0.86	13334	115000000	Cargo loaded, A330-900 taking off!
+CargoJet	737-700	0.82	8149	22500000	Cargo loaded, 737-700 taking off!
+CargoJet	MD-11	0.83	12038	3900000	Cargo loaded, MD-11 taking off!
+CargoJet	DC-8	0.76	8890	4800000	Cargo loaded, DC-8 taking off!
+CargoJet	C-5M	0.79	8900	100350000	Cargo loaded, C-5M taking off!
+CargoJet	An-124	0.78	8400	50000000	Cargo loaded, An-124 taking off!
+FighterJet	F-22	2.25	3000	165000000	Let's kick the tires and light the fires!
+FighterJet	F-14	2.34	3000	38000000	I feel the need -- the need for speed!
+FighterJet	F-16	2.05	546	64000000	Now that's what I call a close encounter!
+FighterJet	Su-25	0.79	1000	11000000	We fly for mother Russia!
+FighterJet	MiG-29	2.25	2000	8000000	Time to attack innocent Syrians and Ukrainians!!
+FighterJet	FC-31	1.8	1200	70000000	The CCP demands we fly to dominate Asia!
+PassengerJet	747-400	0.92	14205	20000000	This 747 is bound for a trans-oceanic flight!
+PassengerJet	A380-800	0.85	14800	276000000	Emirates airlines, bound for takeoff!	

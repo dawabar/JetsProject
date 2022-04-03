@@ -28,7 +28,7 @@ public class AirField {
 		for (Jet jet : fleet) {
 			Jet tempJet = jet;
 			int jetLoc = fleet.indexOf(tempJet);
-			System.out.println(jetLoc+1 + ". MODEL: " + tempJet.getModel() + "\tSPEED (Mach): " + tempJet.getSpeed()
+			System.out.println(jetLoc + 1 + ". MODEL: " + tempJet.getModel() + "\tSPEED (Mach): " + tempJet.getSpeed()
 					+ "\tRANGE (km): " + tempJet.getRange() + "\tPRICE: " + tempJet.getPrice());
 		}
 		System.out.println();
@@ -104,6 +104,16 @@ public class AirField {
 			} else {
 				continue;
 			}
+		}
+		System.out.println();
+	}
+
+	public void flyJet(int jetChoice) {
+		Jet tempJet = getFleet().get(jetChoice);
+		if (!tempJet.getFlyMessage().equals("")) {
+			System.out.println(tempJet.getModel() + ": " + tempJet.getFlyMessage());
+		} else {
+			System.out.println(tempJet.getModel() + " is soaring through the skies at Mach " + tempJet.getSpeed());
 		}
 		System.out.println();
 	}

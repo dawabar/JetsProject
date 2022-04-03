@@ -91,13 +91,14 @@ public class JetsApplication {
 			System.out.println("###                              ###");
 			System.out.println("## 1. List Fleet                  ##");
 			System.out.println("## 2. Fly All Jets                ##");
-			System.out.println("## 3. View Fastest Jet            ##");
-			System.out.println("## 4. View Jet With Longest Range ##");
-			System.out.println("## 5. Load All Cargo Jets         ##");
-			System.out.println("## 6. Dogfight!!!                 ##");
-			System.out.println("## 7. Add A Jet To The Fleet      ##");
-			System.out.println("## 8. Remove A Jet From The Fleet ##");
-			System.out.println("## 9. Quit                        ##");
+			System.out.println("## 3. Fly Specific Jet            ##");
+			System.out.println("## 4. View Fastest Jet            ##");
+			System.out.println("## 5. View Jet With Longest Range ##");
+			System.out.println("## 6. Load All Cargo Jets         ##");
+			System.out.println("## 7. Dogfight!!!                 ##");
+			System.out.println("## 8. Add A Jet To The Fleet      ##");
+			System.out.println("## 9. Remove A Jet From The Fleet ##");
+			System.out.println("## 10. Quit                       ##");
 			System.out.println("###                              ###");
 			System.out.println("####                            ####");
 			System.out.println("####################################");
@@ -113,28 +114,30 @@ public class JetsApplication {
 						airfield.flyAllJets();
 						break;
 					case 3:
-						airfield.getFastestJet(airfield.getFleet());
+						flySpecificJet(sc, airfield);
 						break;
 					case 4:
-						airfield.getLongestRange(airfield.getFleet());
+						airfield.getFastestJet(airfield.getFleet());
 						break;
 					case 5:
-						airfield.loadCargoJets(airfield);
+						airfield.getLongestRange(airfield.getFleet());
 						break;
 					case 6:
-						airfield.dogfight(airfield);
+						airfield.loadCargoJets(airfield);
 						break;
 					case 7:
-						addJetMenu(sc, airfield);
+						airfield.dogfight(airfield);
 						break;
 					case 8:
-						removeJet(sc, airfield);
+						addJetMenu(sc, airfield);
 						break;
 					case 9:
+						removeJet(sc, airfield);
+						break;
+					case 10:
 						System.out.println("Thank you for using this app.  Goodbye.");
 						further = false;
 						break;
-
 					}
 				} else {
 					System.err.println("Choice must be a number 1-9");
@@ -278,17 +281,38 @@ public class JetsApplication {
 			while (further) {
 				int removal = sc.nextInt();
 				if (removal > 0 && removal < airfield.getFleet().size()) {
-					airfield.getFleet().remove(removal-1);
+					airfield.getFleet().remove(removal - 1);
 					further = false;
 				} else {
 					System.out.println("Choice must be one of the numbers in the list.");
 					continue;
 				}
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.err.println(e);
 		}
-		
+
+	}
+
+	private void flySpecificJet(Scanner sc, AirField airfield) {
+		airfield.displayFleet();
+		System.out.print("Choose which jet you want to fly: ");
+		int flyJet = sc.nextInt();
+		sc.nextLine();
+		try {
+			boolean further = true;
+			while (further) {
+				if (flyJet > 0 && flyJet < airfield.getFleet().size()) {
+					further = false;
+					airfield.flyJet(flyJet - 1);
+				} else {
+					System.out.println("Choice must be one of the numbers in the list.");
+					continue;
+				}
+			}
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+
 	}
 }

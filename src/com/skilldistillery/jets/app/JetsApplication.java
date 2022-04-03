@@ -46,8 +46,9 @@ public class JetsApplication {
 				String model = split[1];
 				double speed = Double.parseDouble(split[2]);
 				int range = Integer.parseInt(split[3]);
-				long price = (long) Integer.parseInt(split[4]);
-				String flyMessage = split[5];
+				long price = (long) Double.parseDouble(split[4]);
+				double capacity = Double.parseDouble(split[5]);
+				String flyMessage = split[6];
 				Jet tempJet;
 
 				switch (aircraftType) {
@@ -56,7 +57,7 @@ public class JetsApplication {
 					tempArray.add(tempJet);
 					break;
 				case "CargoJet":
-					tempJet = new CargoJet(model, speed, range, price, flyMessage);
+					tempJet = new CargoJet(model, speed, range, price, capacity, flyMessage);
 					tempArray.add(tempJet);
 					break;
 				case "PassengerJet":
@@ -75,6 +76,7 @@ public class JetsApplication {
 			}
 
 			airfield.setFleet(tempArray);
+			bufIn.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,8 +84,8 @@ public class JetsApplication {
 	}
 
 	public void menu(Scanner sc, AirField airfield) {
-		boolean dalshe = true;
-		while (dalshe) {
+		boolean further = true;
+		while (further) {
 			System.out.println("############# JETS APP #############");
 			System.out.println("####    choose an option 1-9    ####");
 			System.out.println("###                              ###");
@@ -111,10 +113,13 @@ public class JetsApplication {
 						airfield.flyAllJets();
 						break;
 					case 3:
+						airfield.getFastestJet(airfield.getFleet());
 						break;
 					case 4:
+						airfield.getLongestRange(airfield.getFleet());
 						break;
 					case 5:
+						airfield.loadCargoJets(airfield);
 						break;
 					case 6:
 						break;
@@ -137,5 +142,13 @@ public class JetsApplication {
 			}
 		}
 	}
+	
+//	public void loadCargoJets(AirField airfield) {
+//		for (Jet jet : airfield.getFleet()) {
+////			if (jet.getClass().to.equals(String "CargoJet"))){
+//			System.out.println(jet.getClass().toString()); 
+//			
+//		}
+//	}
 
 }

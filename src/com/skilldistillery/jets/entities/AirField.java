@@ -1,6 +1,7 @@
 package com.skilldistillery.jets.entities;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -33,11 +34,11 @@ public class AirField {
 	}
 
 	public void flyAllJets() {
+		System.out.println("It's a busy day at the airport!");
+		System.out.println("All of the jets are on the runway, ready to take off!");
+		System.out.println();
 		for (Jet jet : fleet) {
 			Jet tempJet = jet;
-			System.out.println("It's a busy day at the airport!");
-			System.out.println("All of the jets are on the runway, ready to take off!");
-			System.out.println();
 			if (!tempJet.getFlyMessage().equals("")) {
 				System.out.println(tempJet.getModel() + ": " + tempJet.getFlyMessage());
 			} else {
@@ -74,21 +75,23 @@ public class AirField {
 		System.out.println();
 	}
 
-//	public void loadCargoJets(AirField airfield) {
-//		Jet cargoClass = new CargoJet();
-//		ArrayList<CargoJet> cargoJetList = new ArrayList<>();
-//		for (Jet jet : airfield.getFleet()) {
-//			while (jet.getClass().equals(cargoClass.getClass())) {
-//				tempCargo = new CargoJet(jet.getModel(), jet.getSpeed(), jet.getRange(), jet.getPrice(),jet.get double capacity, String flyMessage));
-//				cargoJetList.add(
-//			}
-//		}
-//		System.out.println("Air freight is the fastest method of intermodal logistics transportation!");
-//		System.out.println("It's a busy and important day for the cargo carriers at the airport!");
-//		System.out.println();
-//		for (CargoJet cargoJet : cargoJetList) {
-//			System.out.println(cargoJet.getModel() + " is loading its cargo to full capacity of " + cargoJet.getCapacity() + "kg.");
-//		}
-//	}
+	public void loadCargoJets(AirField airfield) {
+		System.out.println("Air freight is the fastest method of intermodal logistics transportation!");
+		System.out.println("It's a busy and important day for the cargo carriers at the airport!");
+		System.out.println();
+		Jet cargoClass = new CargoJet();
+		List<Jet> tempList = new LinkedList<Jet>(airfield.getFleet());
+		for (Jet jet : tempList) {
+//			CargoJet tempCargo = ((CargoJet)jet);
+//			if (tempCargo.getCapacity() != 0) {
+			if (jet.getClass().equals(cargoClass.getClass())) {
+//				System.out.println(tempCargo.getModel() + " is loading its cargo to full capacity of " + tempCargo.getCapacity() + "kg.");
+				((CargoJet)jet).loadCargo();
+			} else {
+				continue;
+			}
+		}
+		System.out.println();
+	}
 
 }

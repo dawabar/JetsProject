@@ -61,5 +61,10 @@ public class FighterJet extends Jet {
 		this.flyMessage = flyMessage;
 	}
 	
+	public void fight() {
+		String[] actions = {" dives from the clouds to fire on its enemy.", " locks on its target to fire its missiles.", " hits the brakes as the enemy flies right by.", " barrel rolls to dodge enemy fire.", " fires its main guns to attack!", " climbs to the skies to hide above the clouds.", " pulls a high-G turn to evade attack.", " destroys an enemy fighter to notch another victory!"};
+		int action = (int)(Math.random() * actions.length);
+		System.out.println("The " + this.model + actions[action]);
+	}
 	
 }

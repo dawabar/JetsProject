@@ -122,17 +122,19 @@ public class JetsApplication {
 						airfield.loadCargoJets(airfield);
 						break;
 					case 6:
+						airfield.dogfight(airfield);
 						break;
 					case 7:
+						addJetMenu(sc, airfield);
 						break;
 					case 8:
+						removeJet(sc, airfield);
 						break;
 					case 9:
 						break;
 
 					}
-				}
-				else {
+				} else {
 					System.err.println("Choice must be a number 1-9");
 					continue;
 				}
@@ -142,13 +144,149 @@ public class JetsApplication {
 			}
 		}
 	}
-	
-//	public void loadCargoJets(AirField airfield) {
-//		for (Jet jet : airfield.getFleet()) {
-////			if (jet.getClass().to.equals(String "CargoJet"))){
-//			System.out.println(jet.getClass().toString()); 
-//			
-//		}
-//	}
 
+	public void addJetMenu(Scanner sc, AirField airfield) {
+		boolean further = true;
+		while (further) {
+			System.out.println("What kind of jet do you want to add? (1-4)");
+			System.out.println("1. Fighter Jet");
+			System.out.println("2. Cargo Jet");
+			System.out.println("3. Passenger Jet");
+			System.out.println("4. Generic Jet");
+			int choice = sc.nextInt();
+			try {
+				if (choice > 0 && choice < 5) {
+					switch (choice) {
+					case 1:
+						addFighter(sc, airfield);
+						further = false;
+						break;
+					case 2:
+						addCargo(sc, airfield);
+						further = false;
+						break;
+					case 3:
+						addPassenger(sc, airfield);
+						further = false;
+						break;
+					case 4:
+						addGeneric(sc, airfield);
+						further = false;
+						break;
+					}
+				} else {
+					System.err.println("Number must be 1-4. Choose one of these options.");
+					continue;
+				}
+
+			} catch (Exception e) {
+				System.err.println(e);
+			}
+		}
+		System.out.println();
+
+	}
+
+	public void addFighter(Scanner sc, AirField airfield) {
+//		String model, double speed, int range, long price, String flyMessage
+		System.out.print("MODEL: ");
+		String modelTemp = sc.next().trim();
+		sc.nextLine();
+		System.out.print("SPEED (Mach): ");
+		double speedTemp = sc.nextDouble();
+		sc.nextLine();
+		System.out.print("RANGE (km): ");
+		int rangeTemp = sc.nextInt();
+		sc.nextLine();
+		System.out.print("PRICE: ");
+		long priceTemp = sc.nextLong();
+		sc.nextLine();
+		System.out.print("Message to display when the jet is flying: ");
+		String flyMessageTemp = sc.nextLine();
+		FighterJet tempFighter = new FighterJet(modelTemp, speedTemp, rangeTemp, priceTemp, flyMessageTemp);
+		airfield.getFleet().add(tempFighter);
+	}
+
+	public void addCargo(Scanner sc, AirField airfield) {
+//		String model, double speed, int range, long price, double capacity, String flyMessage
+		System.out.print("MODEL: ");
+		String modelTemp = sc.next().trim();
+		sc.nextLine();
+		System.out.print("SPEED (Mach): ");
+		double speedTemp = sc.nextDouble();
+		sc.nextLine();
+		System.out.print("RANGE (km): ");
+		int rangeTemp = sc.nextInt();
+		sc.nextLine();
+		System.out.print("PRICE (USD): ");
+		long priceTemp = sc.nextLong();
+		sc.nextLine();
+		System.out.print("CAPACITY (cubic meters): ");
+		double capacityTemp = sc.nextDouble();
+		sc.nextLine();
+		System.out.print("Message to display when the jet is flying: ");
+		String flyMessageTemp = sc.nextLine();
+		CargoJet tempCargo = new CargoJet(modelTemp, speedTemp, rangeTemp, priceTemp, capacityTemp, flyMessageTemp);
+		airfield.getFleet().add(tempCargo);
+	}
+
+	public void addPassenger(Scanner sc, AirField airfield) {
+//		String model, double speed, int range, long price, String flyMessage
+		System.out.println("MODEL: ");
+		String modelTemp = sc.next().trim();
+		sc.nextLine();
+		System.out.print("SPEED (Mach): ");
+		double speedTemp = sc.nextDouble();
+		sc.nextLine();
+		System.out.print("RANGE (km): ");
+		int rangeTemp = sc.nextInt();
+		sc.nextLine();
+		System.out.print("PRICE (USD): ");
+		long priceTemp = sc.nextLong();
+		sc.nextLine();
+		System.out.print("Message to display when the jet is flying: ");
+		String flyMessageTemp = sc.nextLine();
+		PassengerJet tempPassenger = new PassengerJet(modelTemp, speedTemp, rangeTemp, priceTemp, flyMessageTemp);
+		airfield.getFleet().add(tempPassenger);
+	}
+
+	public void addGeneric(Scanner sc, AirField airfield) {
+//		String model, double speed, int range, long price
+		System.out.print("MODEL: ");
+		String modelTemp = sc.next().trim();
+		sc.nextLine();
+		System.out.print("SPEED (Mach): ");
+		double speedTemp = sc.nextDouble();
+		sc.nextLine();
+		System.out.print("RANGE (km): ");
+		int rangeTemp = sc.nextInt();
+		sc.nextLine();
+		System.out.print("PRICE (USD): ");
+		long priceTemp = sc.nextLong();
+		sc.nextLine();
+		PassengerJet tempGeneric = new PassengerJet(modelTemp, speedTemp, rangeTemp, priceTemp);
+		airfield.getFleet().add(tempGeneric);
+	}
+
+	public void removeJet(Scanner sc, AirField airfield) {
+		airfield.displayFleet();
+		System.out.print("Choose a number for which jet you want to remove: ");
+		try {
+			boolean further = true;
+			while (further) {
+				int removal = sc.nextInt();
+				if (removal > 0 && removal < airfield.getFleet().size()) {
+					airfield.getFleet().remove(removal-1);
+					further = false;
+				} else {
+					System.out.println("Choice must be one of the numbers in the list.");
+					continue;
+				}
+			}
+		}
+		catch (Exception e) {
+			System.err.println(e);
+		}
+		
+	}
 }

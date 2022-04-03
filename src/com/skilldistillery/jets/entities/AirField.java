@@ -27,7 +27,8 @@ public class AirField {
 	public void displayFleet() {
 		for (Jet jet : fleet) {
 			Jet tempJet = jet;
-			System.out.println("MODEL: " + tempJet.getModel() + "\tSPEED (Mach): " + tempJet.getSpeed()
+			int jetLoc = fleet.indexOf(tempJet);
+			System.out.println(jetLoc+1 + ". MODEL: " + tempJet.getModel() + "\tSPEED (Mach): " + tempJet.getSpeed()
 					+ "\tRANGE (km): " + tempJet.getRange() + "\tPRICE: " + tempJet.getPrice());
 		}
 		System.out.println();
@@ -82,11 +83,24 @@ public class AirField {
 		Jet cargoClass = new CargoJet();
 		List<Jet> tempList = new LinkedList<Jet>(airfield.getFleet());
 		for (Jet jet : tempList) {
-//			CargoJet tempCargo = ((CargoJet)jet);
-//			if (tempCargo.getCapacity() != 0) {
 			if (jet.getClass().equals(cargoClass.getClass())) {
-//				System.out.println(tempCargo.getModel() + " is loading its cargo to full capacity of " + tempCargo.getCapacity() + "kg.");
-				((CargoJet)jet).loadCargo();
+				((CargoJet) jet).loadCargo();
+			} else {
+				continue;
+			}
+		}
+		System.out.println();
+	}
+
+	public void dogfight(AirField airfield) {
+		System.out.println("Oh no! Air combat has started, and the fighter jets scramble to dominate the skies!");
+		System.out.println("Against a backdrop of cumulonimbus clouds and a blue sky, the fighters engage each other.");
+		System.out.println();
+		Jet fighterClass = new FighterJet();
+		List<Jet> tempList = new LinkedList<Jet>(airfield.getFleet());
+		for (Jet jet : tempList) {
+			if (jet.getClass().equals(fighterClass.getClass())) {
+				((FighterJet) jet).fight();
 			} else {
 				continue;
 			}

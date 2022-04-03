@@ -131,6 +131,8 @@ public class JetsApplication {
 						removeJet(sc, airfield);
 						break;
 					case 9:
+						System.out.println("Thank you for using this app.  Goodbye.");
+						further = false;
 						break;
 
 					}

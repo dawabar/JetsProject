@@ -26,8 +26,8 @@ public class JetsApplication {
 
 		List<Jet> aircraft = new ArrayList<>();
 		AirField airfield = new AirField();
-		
 		String importFile = "jets.txt"; 
+		
 		ja.readFromFile(importFile, aircraft, airfield);
 
 		ja.menu(sc, airfield, importFile);
@@ -155,11 +155,11 @@ public class JetsApplication {
 						break;
 					}
 				} else {
-					System.err.println("Choice must be a number 1-9");
+					System.err.println("Choice must be a number 1-10");
 					continue;
 				}
 			} catch (Exception e) {
-				System.err.println("Choice must be a number 1-9");
+				System.err.println("Choice must be a number 1-10");
 				continue;
 			}
 		}
